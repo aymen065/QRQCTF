@@ -1,12 +1,12 @@
-resource "azurerm_resource_group" "RG" {
+resource "azurerm_resource_group" "RGQRQC" {
   name     = var.resource_group_name
   location = var.location
 }
 
 resource "azurerm_mysql_server" "dbserverQRQC" {
   name                = var.mysqlserver_name
-  location            = azurerm_resource_group.RG.location
-  resource_group_name = azurerm_resource_group.RG.name
+  location            = azurerm_resource_group.RGQRQC.location
+  resource_group_name = azurerm_resource_group.RGQRQC.name
   sku_name            = "B_Gen5_2" 
   version             = "5.7"     
 
@@ -32,7 +32,7 @@ resource "azurerm_mysql_server" "dbserverQRQC" {
 }
 resource "azurerm_mysql_firewall_rule" "rulesformysql" {
   name                = "office"
-  resource_group_name = azurerm_resource_group.RG.name
+  resource_group_name = azurerm_resource_group.RGQRQC.name
   server_name         = azurerm_mysql_server.dbserverQRQC.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "255.255.255.255"
@@ -40,7 +40,7 @@ resource "azurerm_mysql_firewall_rule" "rulesformysql" {
 
 resource "azurerm_mysql_database" "QRQC" {
   name                = var.mysql_database_name
-  resource_group_name = azurerm_resource_group.RG.name
+  resource_group_name = azurerm_resource_group.RGQRQC.name
   server_name         = azurerm_mysql_server.dbserverQRQC.name
   charset             = "utf8"
   collation           = "utf8_unicode_ci"
