@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: qrqcfront
+   namespace: default
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         app: qrqcfront
+   template:
+      metadata:
+         labels:
+            app: qrqcfront
+      spec:
+         containers:
+            - name: frontend
+              image: aymen065/front
+              ports:
+              - containerPort: 4200
