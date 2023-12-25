@@ -17,4 +17,4 @@ spec:
             - name: frontend
               image: aymen065/front
               ports:
-              - containerPort: 4200
+              - containerPort: 80
